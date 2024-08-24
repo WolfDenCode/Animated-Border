@@ -1,0 +1,78 @@
+/* Basic Components, Don't Showcase in video */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto";
+    flex-direction: column;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #031527;
+}
+
+.container{
+    background-color: #686D76;
+    width: 20vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    padding: 10px;
+
+    /*Put Relative In Container After getting to position:absolute at container::after*/
+
+    position: relative;
+}
+
+.container img{
+    width: 10vw;
+    aspect-ratio: 1;
+}
+
+/* Video Components From Here */
+
+@property --degree{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.container::after, .container::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    /*Padding will give the size of the border*/
+    padding: 5px;
+    border-radius: 10px;
+    /*Conic gradient is clockwise transition for 2 colours; Add the same first and last color for smooth transition*/
+    background-image: conic-gradient(from var(--degree), #FF8225, #ff0000, #df2020, #cfca35, #FF8225);
+    animation: 2s spin-around linear infinite;
+}
+
+.container::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin-around {
+    from{
+        --degree: 0deg;
+    }
+    to{
+        --degree: 360deg;
+    }
+}
